@@ -1,5 +1,3 @@
-from Terrain import *
-
 class Field:
     def __init__(self, field, unit, cols, rows):
         self.field = field
@@ -23,39 +21,34 @@ class Field:
     def move_unit_right(self):
         x, y = self.unit.get_position()
         if y + 1 == self.get_cals() or not self.is_walc((x, y + 1)):
-            print('No path')
+            print('Не пройти!')
         else:
-            self.successful_step((x, y), (x, y + 1))
+            self.successful_step((x, y + 1))
 
     def move_unit_left(self):
         x, y = self.unit.get_position()
         if y - 1 < 0 or not self.is_walc((x, y - 1)):
-            print('No path')
+            print('Не пройти!')
         else:
-            self.successful_step((x, y), (x, y - 1))
+            self.successful_step((x, y - 1))
 
     def move_unit_down(self):
         x, y = self.unit.get_position()
         if x + 1 == self.get_rows() or not self.is_walc((x + 1, y)):
-            print('No path')
+            print('Не пройти!')
         else:
-            self.successful_step((x, y), (x + 1, y))
+            self.successful_step((x + 1, y))
 
     def move_unit_up(self):
         x, y = self.unit.get_position()
         if x - 1 < 0 or not self.is_walc((x - 1, y)):
-            print('No path')
+            print('Не пройти!')
         else:
-            self.successful_step((x, y), (x - 1, y))
+            self.successful_step((x - 1, y))
 
-    def successful_step(self, old_coord, new_coord):
+    def successful_step(self, new_coord):
         self.change_hero(new_coord)
         self.unit.set_position(new_coord)
-        self.set_cell(old_coord, Grass())
-        self.set_cell(new_coord, self.unit)
-
-    def set_cell(self, coord, obj):
-        self.field[coord[0]][coord[1]] = Cell(obj)
 
     def get_field(self):
         return self.field
@@ -66,8 +59,12 @@ class Field:
     def get_rows(self):
         return self.rows
 
-    def field_print(self):
-        for el in self.field:
+    def field_drow(self, map_print, ghost_img):
+        x, y = self.unit.get_position()
+        maps = list(map(list, map_print))
+        maps[x][y] = ghost_img
+        for el in maps:
             for e in el:
-                print(e.get_obj(), end=' ')
+                print(e, end=' ')
             print()
+        maps.clear()

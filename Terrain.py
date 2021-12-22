@@ -47,14 +47,16 @@ class Key(Terrain):
     def __str__(self):
         return ' !'
 
-
 class Door(Terrain):
     def __init__(self):
         super().__init__(terrain='door', walkable=True)
 
     def step_on(self, unit):
         if unit.has_key():
+            print('Игра окончена, побег удался')
             unit.set_escaped()
+        else:
+            print('Дверь - это хорошо, но нужен ключ')
 
     def __str__(self):
         return '[]'
