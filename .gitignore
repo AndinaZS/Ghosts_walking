@@ -1,0 +1,4 @@
+.idea/
+*.gitignor
+*.txt
+__pycache__/
