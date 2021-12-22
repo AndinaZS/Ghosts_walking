@@ -16,15 +16,11 @@ class Grass(Terrain):
     def __init__(self):
         super().__init__(terrain='grass', walkable=True)
 
-    def __str__(self):
-        return ' *'
 
 class Wall(Terrain):
     def __init__(self):
         super().__init__(terrain='wall', walkable=False)
 
-    def __str__(self):
-        return '||'
 
 class Trap(Terrain):
     def __init__(self, damage=6):
@@ -34,9 +30,6 @@ class Trap(Terrain):
     def step_on(self, unit):
         unit.get_damage(self.damage)
 
-    def __str__(self):
-        return ' #'
-
 class Key(Terrain):
     def __init__(self):
         super().__init__(terrain='key', walkable=True)
@@ -44,8 +37,6 @@ class Key(Terrain):
     def step_on(self, unit):
         unit.set_key()
 
-    def __str__(self):
-        return ' !'
 
 class Door(Terrain):
     def __init__(self):
@@ -57,9 +48,6 @@ class Door(Terrain):
             unit.set_escaped()
         else:
             print('Дверь - это хорошо, но нужен ключ')
-
-    def __str__(self):
-        return '[]'
 
 class Cell:
     def __init__(self, obj):
