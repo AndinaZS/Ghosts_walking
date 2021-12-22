@@ -48,14 +48,6 @@ class Field:
         else:
             self.successful_step((x, y), (x - 1, y))
 
-    # def is_door(self, coord):
-    #     current = Grass()
-    #     cell = self.cell(coords)
-    #     obj = cell.get_obj()
-    #     if type(obj) == Door:
-    #         next = Door()
-
-
     def successful_step(self, old_coord, new_coord):
         self.change_hero(new_coord)
         self.unit.set_position(new_coord)

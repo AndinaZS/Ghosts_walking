@@ -1,4 +1,3 @@
 from Controller import *
 
-cont = Controller()
-cont.play()
+start = Main()
